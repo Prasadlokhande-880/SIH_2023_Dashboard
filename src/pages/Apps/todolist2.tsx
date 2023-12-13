@@ -9,6 +9,16 @@ import IconBell from '../../components/Icon/IconBell';
 import IconXCircle from '../../components/Icon/IconXCircle';
 import IconPencil from '../../components/Icon/IconPencil';
 import IconTrashLines from '../../components/Icon/IconTrashLines';
+import axios, { AxiosResponse } from 'axios';
+
+
+interface Data {
+    // Define the structure of your data here
+    id: number;
+    name: string;
+    // ... other properties
+  }
+
 
 const rowData = [
     {
@@ -627,6 +637,29 @@ const MultipleTables = () => {
         const random = Math.floor(Math.random() * status.length);
         return status[random];
     };
+
+
+    ////// this is the code for geting the data from the bakend
+
+    const [data, setData] = useState<Data[]>([]);
+
+  useEffect(() => {
+    // Function to fetch data from your backend
+    const fetchData = async () => {
+      try {
+        const response: AxiosResponse<Data[]> = await axios.get('link');
+        setData(response.data);
+      } catch (error) {
+        // Handle error, for example:
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData(); // Invoke the function when the component mounts or when necessary
+  }, []);
+
+
+  
 
     return (
         <div>
