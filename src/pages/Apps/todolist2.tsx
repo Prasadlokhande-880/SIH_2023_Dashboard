@@ -8,17 +8,9 @@ import IconBell from '../../components/Icon/IconBell';
 import axios, { AxiosResponse } from 'axios';
 
 interface Data {
-    // Define the structure of your data here
     id: number;
     name: string;
-    // ... other properties
-  }
 
-  interface Data2 {
-    // Define the structure of your data here
-    id: number;
-    name: string;
-    // ... other properties
   }
 
 
@@ -151,7 +143,7 @@ const MultipleTables = () => {
     ////// this is the code for geting the data from the bakend
 
     const [data, setData] = useState<Data[]>([]);
-    const [data2, setData2] = useState<Data2[]>([]);
+    const [data2, setData2] = useState<Data[]>([]);
 
   useEffect(() => {
     // Function to fetch data from your backend
