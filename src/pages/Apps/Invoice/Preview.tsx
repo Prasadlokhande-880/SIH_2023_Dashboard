@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AxiosResponse } from 'axios';
+import axios from 'axios'
+
 
 const YourFormComponent: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -38,8 +41,26 @@ const YourFormComponent: React.FC = () => {
         });
     };
 
+
+    const sendDataToBackend = async (data: any) => {
+        try {
+            const response: AxiosResponse<any> = await axios.post('https://your-backend-url.com/submitFormData', data);
+            console.log('Data sent to the backend:', response.data);
+        } catch (error: any) {
+            console.error('Error sending data to the backend:', error);
+        }
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Prevent default form submission behavior
+        sendDataToBackend(formData);
+    };
+
+
     return (
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={()=>{
+            handleSubmit
+        }}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
                 <label htmlFor="petitioner">Petitioner:</label>

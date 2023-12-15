@@ -1,9 +1,104 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab } from '@headlessui/react';
 import { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
 
 const FinalForm = () => {
+
+    const [formData, setFormData] = useState({
+        district: '',
+        establishment: '',
+        natureOfCase: '',
+        reliefSought: '',
+        caseType: '',
+        plaintiff: '',
+        contactNo: '',
+        petitioner: '',
+        gender: '',
+        relation: '',
+        dob: '',
+        age: 0,
+        case: '',
+        petitionerCount: 0,
+        email: '',
+        occupation: '',
+        mobile: 0,
+        pinCode: '',
+        address: '',
+        state: '',
+        district2: '',
+        taluka: '',
+        village: '',
+        Responder: '',
+        gender2: '',
+        relation2: '',
+        dob2: '',
+        age2: 0,
+        case2: '',
+        petitionerCount2:0,
+        email2: '',
+        occupation2: '',
+        mobile2: 0,
+        pinCode2: '',
+        address2: '',
+        state2: '',
+        district3: '',
+        taluka2: '',
+        village2: '',
+        causeOfAction: '',
+        dateOfCauseOfAction: '',
+        importantInfo: '',
+        prayer: '',
+        valuation: "",
+        selectedState: '',
+        selectedDistrict: '',
+        selectedTaluka: '',
+        selectedVillage: '',
+        act: '',
+        section: '',
+    });
+
+    const axios = require('axios');
+
+const endpointUrl = 'https://your-backend-url.com/formData';
+
+const getFormDataFromBackend = async () => {
+    try {
+        const response = await axios.get(endpointUrl);
+        const formDataFromBackend = response.data;
+                setFormData(formDataFromBackend);
+    } catch (error) {
+        console.error('Error fetching form data:', error);
+    }
+};
+
+getFormDataFromBackend();
+
+
+
+    const handleGenderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            gender: e.target.value
+        });
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { id, value } = e.target;
+        setFormData({
+            ...formData,
+            [id]: value,
+        });
+
+        console.log(formData);
+    };
+
+    const functionsub = () => {
+        // Perform actions with formData on form submission
+        // For example, send formData to an API endpoint
+        console.log(formData); // Placeholder: you can send data or perform actions here
+    };
+
+
   return (
     <div>
       <div className="p-5">
@@ -58,78 +153,62 @@ const FinalForm = () => {
             </div> */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label htmlFor="gridState">District</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                <label htmlFor="district">district</label>
+                    <select
+                    id="district"
+                    className="form-select text-white-dark"
+                    value={formData.district}
+                    onChange={handleInputChange}
+                    >
                         <option>Choose...</option>
-                        <option>District1</option>
-                        <option>District2</option>
+                        <option>State1</option>
+                        <option>State2</option>
                     </select>
                 </div>
                 <div>
                     <label htmlFor="gridState">Establishment</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <select
+                    id="district"
+                    className="form-select text-white-dark"
+                    value={formData.district}
+                    onChange={handleInputChange}
+                    >
                         <option>Choose...</option>
-                        <option>Establishment1</option>
-                        <option>Establishment2</option>
+                        <option>State1</option>
+                        <option>State2</option>
                     </select>
                 </div>
                 <div>
                     <label htmlFor="gridState">Nature of Case</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <select
+                    id="district"
+                    className="form-select text-white-dark"
+                    value={formData.district}
+                    onChange={handleInputChange}
+                    >
                         <option>Choose...</option>
-                        <option>Nature1</option>
-                        <option>Nature2</option>
+                        <option>State1</option>
+                        <option>State2</option>
                     </select>
                 </div>
             </div>
             <div>
                 <label htmlFor="gridEmail">Relief Sought</label>
-                <input id="gridEmail" type="text" placeholder="Relief Sought" className="form-input" />
+                <input id="gridEmail" type="text" placeholder="Relief Sought" className="form-input" value={formData.reliefSought}/>
             </div>
             <div>
                 <label htmlFor="gridPassword">Case Type</label>
-                <input id="gridPassword" type="text" placeholder="Case Type" className="form-input" />
+                <input id="gridPassword" type="text" placeholder="Case Type" className="form-input" value={formData.caseType}/>
             </div>
             <div>
                 <label htmlFor="gridEmail">Plaintiff</label>
-                <input id="gridEmail" type="text" placeholder="Plaintiff" className="form-input" />
+                <input id="gridEmail" type="text" placeholder="Plaintiff" className="form-input" value={formData.plaintiff}/>
             </div>
             <div>
                 <label htmlFor="gridPassword">Contact No.</label>
-                <input id="gridPassword" type="text" placeholder="Contact No." className="form-input" />
+                <input id="gridPassword" type="text" placeholder="Contact No." className="form-input" value={formData.contactNo} />
             </div>
-            {/* <div>
-                <label htmlFor="gridAddress1">Address</label>
-                <input id="gridAddress1" type="text" placeholder="Enter Address" defaultValue="1234 Main St" className="form-input" />
-            </div>
-            <div>
-                <label htmlFor="gridAddress2">Address2</label>
-                <input id="gridAddress2" type="text" placeholder="Enter Address2" defaultValue="Apartment, studio, or floor" className="form-input" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div className="md:col-span-2">
-                    <label htmlFor="gridCity">City</label>
-                    <input id="gridCity" type="text" placeholder="Enter City" className="form-input" />
-                </div>
-                <div>
-                    <label htmlFor="gridState">State</label>
-                    <select id="gridState" className="form-select text-white-dark">
-                        <option>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="gridZip">Zip</label>
-                    <input id="gridZip" type="text" placeholder="Enter Zip" className="form-input" />
-                </div>
-        </div> */}
-            <NavLink to="/apps/invoice/preview">
-                <button type="button" className="btn btn-primary mt-6">
-                    Submit
-                </button>
-            </NavLink>
         </form>
-
 
 
 
@@ -142,115 +221,92 @@ const FinalForm = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label htmlFor="gridEmail">Petitioner:</label>
-                    <input id="gridEmail" type="text" placeholder="Petitioner Name" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Petitioner Name" className="form-input" value={formData.petitioner} />
                 </div>
 
                 <div>
                     <label htmlFor="gridEmail">Gender:</label>
-                    <div className="flex flex-col">
-                        <label htmlFor="male" className="flex items-center cursor-pointer">
-                            <input type="radio" id="male" name="gender" className="form-radio" />
-                            <span>Male</span>
-                        </label>
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="female" className="flex items-center cursor-pointer">
-                            <input type="radio" id="female" name="gender" className="form-radio" />
-                            <span>Female</span>
-                        </label>
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="other" className="flex items-center cursor-pointer">
-                            <input type="radio" id="other" name="gender" className="form-radio" />
-                            <span>Other</span>
-                        </label>
-                    </div>
+                    <input id="gridEmail" type="text" placeholder="Petitioner Name" className="form-input" value={formData.gender} />
                 </div>
             </div>
             <div>
                 <label htmlFor="gridAddress1">Relation</label>
-                <input id="gridAddress1" type="text" placeholder="Relation" className="form-input" />
+                <input id="gridAddress1" type="text" placeholder="Relation" className="form-input" value={formData.relation}/>
             </div>
             <div>
                 <label htmlFor="gridAddress2">Date of Birth</label>
-                <input id="gridAddress2" type="date" className="form-input" />
+                <input id="gridAddress2" type="date" className="form-input" value={formData.dob}/>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div className="md:col-span-2">
                     <label htmlFor="gridCity">Age:</label>
-                    <input id="gridCity" type="number" placeholder="Enter Age" className="form-input" />
+                    <input id="gridCity" type="number" placeholder="Enter Age" className="form-input" value={formData.age}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridState">Case</label>
-                    <input id="gridCity" type="text" placeholder="Enter case" className="form-input" />
+                    <input id="gridCity" type="text" placeholder="Enter case" className="form-input" value={formData.case}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridZip">Extra Petitioner Count</label>
-                    <input id="gridZip" type="number" placeholder="Extra Petitioner Count" className="form-input" />
+                    <input id="gridZip" type="number" placeholder="Extra Petitioner Count" className="form-input"  value={formData.petitionerCount}/>
                 </div>
             </div>
 
             <div>
                 <label htmlFor="gridEmail">Email:</label>
-                <input id="gridEmail" type="email" placeholder="Email Name" className="form-input" />
+                <input id="gridEmail" type="email" placeholder="Email Name" className="form-input"  value={formData.email}/>
             </div>
 
             <div>
                 <label htmlFor="gridEmail">Occupation:</label>
-                <input id="gridEmail" type="text" placeholder="Occupation" className="form-input" />
+                <input id="gridEmail" type="text" placeholder="Occupation" className="form-input"  value={formData.occupation}/>
             </div>
 
             <div>
                 <label htmlFor="gridEmail">Mobile no:</label>
-                <input id="gridEmail" type="number" placeholder="Mobile no" className="form-input" />
+                <input id="gridEmail" type="number" placeholder="Mobile no" className="form-input"  value={formData.mobile}/>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div>
                     <label htmlFor="gridEmail">Pin Code:</label>
-                    <input id="gridEmail" type="text" placeholder="Pin Code" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Pin Code" className="form-input"  value={formData.pinCode}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridState">Address</label>
-                    <textarea id="gridCity" placeholder="Address" className="form-input" />
+                    <textarea id="gridCity" placeholder="Address" className="form-input"  value={formData.address}/>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div>
                     <label htmlFor="gridEmail">State:</label>
-                    <input id="gridEmail" type="text" placeholder="State" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="State" className="form-input"  value={formData.state}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridEmail">District:</label>
-                    <input id="gridEmail" type="text" placeholder="District" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="District" className="form-input"  value={formData.district2}/>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div>
                     <label htmlFor="gridEmail">Taluka:</label>
-                    <input id="gridEmail" type="text" placeholder="Taluka" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Taluka" className="form-input"  value={formData.taluka}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridEmail">Village:</label>
-                    <input id="gridEmail" type="text" placeholder="Village" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Village" className="form-input"  value={formData.village}/>
                 </div>
             </div>
-            <NavLink to="/apps/invoice/add">
-                <button type="button" className="btn btn-primary mt-6">
-                    Submit
-                </button>
-            </NavLink>
         </form>
             </div>
-
 
 
 
@@ -262,112 +318,90 @@ const FinalForm = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label htmlFor="gridEmail">Responder:</label>
-                    <input id="gridEmail" type="text" placeholder="Responder Name" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Responder Name" className="form-input"  value={formData.Responder}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridEmail">Gender:</label>
-                    <div className="flex flex-col">
-                        <label htmlFor="male" className="flex items-center cursor-pointer">
-                            <input type="radio" id="male" name="gender" className="form-radio" />
-                            <span>Male</span>
-                        </label>
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="female" className="flex items-center cursor-pointer">
-                            <input type="radio" id="female" name="gender" className="form-radio" />
-                            <span>Female</span>
-                        </label>
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="other" className="flex items-center cursor-pointer">
-                            <input type="radio" id="other" name="gender" className="form-radio" />
-                            <span>Other</span>
-                        </label>
-                    </div>
+                    <input id="gridEmail" type="text" placeholder="Responder Name" className="form-input"  value={formData.gender2}/>
                 </div>
             </div>
             <div>
                 <label htmlFor="gridAddress1">Relation</label>
-                <input id="gridAddress1" type="text" placeholder="Relation" className="form-input" />
+                <input id="gridAddress1" type="text" placeholder="Relation" className="form-input" value={formData.relation2}/>
             </div>
             <div>
                 <label htmlFor="gridAddress2">Date of Birth</label>
-                <input id="gridAddress2" type="date" className="form-input" />
+                <input id="gridAddress2" type="date" className="form-input" value={formData.dob2}/>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div className="md:col-span-2">
                     <label htmlFor="gridCity">Age:</label>
-                    <input id="gridCity" type="number" placeholder="Enter Age" className="form-input" />
+                    <input id="gridCity" type="number" placeholder="Enter Age" className="form-input" value={formData.age2}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridState">Case</label>
-                    <input id="gridCity" type="text" placeholder="Enter case" className="form-input" />
+                    <input id="gridCity" type="text" placeholder="Enter case" className="form-input" value={formData.case2}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridZip">Extra Petitioner Count</label>
-                    <input id="gridZip" type="number" placeholder="Extra Petitioner Count" className="form-input" />
+                    <input id="gridZip" type="number" placeholder="Extra Petitioner Count" className="form-input" value={formData.petitionerCount2}/>
                 </div>
             </div>
 
             <div>
                 <label htmlFor="gridEmail">Email:</label>
-                <input id="gridEmail" type="email" placeholder="Email Name" className="form-input" />
+                <input id="gridEmail" type="email" placeholder="Email Name" className="form-input" value={formData.email2}/>
             </div>
 
             <div>
                 <label htmlFor="gridEmail">Occupation:</label>
-                <input id="gridEmail" type="text" placeholder="Occupation" className="form-input" />
+                <input id="gridEmail" type="text" placeholder="Occupation" className="form-input" value={formData.occupation2}/>
             </div>
 
             <div>
                 <label htmlFor="gridEmail">Mobile no:</label>
-                <input id="gridEmail" type="number" placeholder="Mobile no" className="form-input" />
+                <input id="gridEmail" type="number" placeholder="Mobile no" className="form-input" value={formData.mobile2}/>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div>
                     <label htmlFor="gridEmail">Pin Code:</label>
-                    <input id="gridEmail" type="text" placeholder="Pin Code" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Pin Code" className="form-input" value={formData.pinCode2}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridState">Address</label>
-                    <textarea id="gridCity" placeholder="Address" className="form-input" />
+                    <textarea id="gridCity" placeholder="Address" className="form-input" value={formData.address2}/>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div>
                     <label htmlFor="gridEmail">State:</label>
-                    <input id="gridEmail" type="text" placeholder="State" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="State" className="form-input" value={formData.state2}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridEmail">District:</label>
-                    <input id="gridEmail" type="text" placeholder="District" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="District" className="form-input" value={formData.district3}/>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div>
                     <label htmlFor="gridEmail">Taluka:</label>
-                    <input id="gridEmail" type="text" placeholder="Taluka" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Taluka" className="form-input" value={formData.taluka2}/>
                 </div>
 
                 <div>
                     <label htmlFor="gridEmail">Village:</label>
-                    <input id="gridEmail" type="text" placeholder="Village" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Village" className="form-input" value={formData.village2}/>
                 </div>
             </div>
-            <NavLink to="/apps/invoice/edit">
-                <button type="button" className="btn btn-primary mt-6">
-                    Submit
-                </button>
-            </NavLink>
         </form>
             </div>
           </Tab.Panel>
@@ -383,31 +417,31 @@ const FinalForm = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label htmlFor="gridEmail">Cause of Action</label>
-                    <input id="gridEmail" type="text" placeholder="Enter Cause of Action" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Enter Cause of Action" className="form-input" value={formData.causeOfAction}/>
                 </div>
                 <div>
                     <label htmlFor="gridPassword">Date of Cause of Action</label>
-                    <input id="gridPassword" type="date" placeholder="Enter Date of Cause of Action" className="form-input" />
+                    <input id="gridPassword" type="date" placeholder="Enter Date of Cause of Action" className="form-input" value={formData.dateOfCauseOfAction}/>
                 </div>
             </div>
             <div>
                 <label htmlFor="gridAddress1">Important Information</label>
-                <input id="gridAddress1" type="text" placeholder="Enter Important Information / Subject / Reason" defaultValue="" className="form-input" />
+                <input id="gridAddress1" type="text" placeholder="Enter Important Information / Subject / Reason" defaultValue="" className="form-input" value={formData.importantInfo}/>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label htmlFor="gridEmail">Prayer</label>
-                    <input id="gridEmail" type="text" placeholder="Enter Prayer" className="form-input" />
+                    <input id="gridEmail" type="text" placeholder="Enter Prayer" className="form-input" value={formData.prayer}/>
                 </div>
                 <div>
                     <label htmlFor="gridPassword">Valuation</label>
-                    <input id="gridPassword" type="number" placeholder="Enter Valuation" className="form-input" />
+                    <input id="gridPassword" type="number" placeholder="Enter Valuation" className="form-input" value={formData.valuation}/>
                 </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label htmlFor="gridState">State</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <select id="gridState" className="form-select text-white-dark" value={formData.selectedState}>
                         <option>Choose...</option>
                         <option>State1</option>
                         <option>State2</option>
@@ -415,7 +449,7 @@ const FinalForm = () => {
                 </div>
                 <div>
                     <label htmlFor="gridState">District</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <select id="gridState" className="form-select text-white-dark" value={formData.selectedDistrict}>
                         <option>Choose...</option>
                         <option>District1</option>
                         <option>District2</option>
@@ -423,7 +457,7 @@ const FinalForm = () => {
                 </div>
                 <div>
                     <label htmlFor="gridState">Taluka</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <select id="gridState" className="form-select text-white-dark" value={formData.selectedTaluka} >
                         <option>Choose...</option>
                         <option>Taluka1</option>
                         <option>Taluka2</option>
@@ -431,7 +465,7 @@ const FinalForm = () => {
                 </div>
                 <div>
                     <label htmlFor="gridState">Village</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <select id="gridState" className="form-select text-white-dark" value={formData.selectedVillage}>
                         <option>Choose...</option>
                         <option>Village1</option>
                         <option>Village2</option>
@@ -440,38 +474,12 @@ const FinalForm = () => {
             </div>
             <div>
                 <label htmlFor="gridPassword">Act</label>
-                <input id="gridPassword" type="text" placeholder="Enter Act" className="form-input" />
+                <input id="gridPassword" type="text" placeholder="Enter Act" className="form-input" value={formData.act}/>
             </div>
             <div>
                 <label htmlFor="gridPassword">Section</label>
-                <input id="gridPassword" type="text" placeholder="Enter Section" className="form-input" />
+                <input id="gridPassword" type="text" placeholder="Enter Section" className="form-input" value={formData.section}/>
             </div>
-            {/* <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div className="md:col-span-2">
-                    <label htmlFor="gridCity">City</label>
-                    <input id="gridCity" type="text" placeholder="Enter City" className="form-input" />
-                </div>
-                <div>
-                    <label htmlFor="gridState">State</label>
-                    <select id="gridState" className="form-select text-white-dark">
-                        <option>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="gridZip">Zip</label>
-                    <input id="gridZip" type="text" placeholder="Enter Zip" className="form-input" />
-                </div>
-            </div> */}
-            <div>
-                <label className="flex items-center mt-1 cursor-pointer">
-                    <input type="checkbox" className="form-checkbox" />
-                    <span className="text-white-dark">Check me out</span>
-                </label>
-            </div>
-            <button type="submit" className="btn btn-primary !mt-6">
-                Submit
-            </button>
         </form>
             </div>
           </Tab.Panel>

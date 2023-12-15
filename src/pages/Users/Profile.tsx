@@ -20,6 +20,7 @@ import IconClock from '../../components/Icon/IconClock';
 import IconHorizontalDots from '../../components/Icon/IconHorizontalDots';
 import { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import axios from 'axios';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -264,6 +265,34 @@ const Profile = () => {
         },
     };
 
+
+    // this are the function and the object for geting the data from the backend
+
+    const [userData,userdatafunction]=useState({
+        name:"",
+        email:"",
+        BOD:"",
+        ordinaryPlaceOfWorking:"",
+        district:"",
+        mobile:"",
+        gender:"",
+        state:""
+    })
+
+// Function to retrieve user data from the backend
+const getUserDataFromBackend = async () => {
+    try {
+        const response = await axios.get("https://your-backend-url.com/userData");
+const userDataFromBackend = response.data;
+         userdatafunction(userDataFromBackend);
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+    }
+};
+
+getUserDataFromBackend();
+
+
     return (
         <div>
             <ul className="flex space-x-2 rtl:space-x-reverse">
@@ -288,145 +317,36 @@ const Profile = () => {
                         <div className="mb-5">
                             <div className="flex flex-col justify-center items-center">
                                 <img src="/assets/images/profile-34.jpeg" alt="img" className="w-24 h-24 rounded-full object-cover  mb-5" />
-                                <p className="font-semibold text-primary text-xl">Jimmy Turner</p>
+                                <p className="font-semibold text-primary text-xl">{userData.name}</p>
                             </div>
                             <ul className="mt-5 flex flex-col max-w-[160px] m-auto space-y-4 font-semibold text-white-dark">
                                 <li className="flex items-center gap-2">
                                     <IconCoffee className="shrink-0" />
-                                    Web Developer
+                                    {userData.ordinaryPlaceOfWorking}
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <IconCalendar className="shrink-0" />
-                                    Jan 20, 1989
+                                   {userData.BOD}
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <IconMapPin className="shrink-0" />
-                                    New York, USA
+                                    {userData.district},{userData.state}
                                 </li>
                                 <li>
                                     <button className="flex items-center gap-2">
                                         <IconMail className="w-5 h-5 shrink-0" />
-                                        <span className="text-primary truncate">jimmy@gmail.com</span>
+                                        <span className="text-primary truncate">{userData.email}</span>
                                     </button>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <IconPhone />
                                     <span className="whitespace-nowrap" dir="ltr">
-                                        +1 (530) 555-12121
+                                      {userData.mobile}
                                     </span>
-                                </li>
-                            </ul>
-                            <ul className="mt-7 flex items-center justify-center gap-2">
-                                <li>
-                                    <button className="btn btn-info flex items-center justify-center rounded-full w-10 h-10 p-0">
-                                        <IconTwitter className="w-5 h-5" />
-                                    </button>
-                                </li>
-                                <li>
-                                    <button className="btn btn-danger flex items-center justify-center rounded-full w-10 h-10 p-0">
-                                        <IconDribbble />
-                                    </button>
-                                </li>
-                                <li>
-                                    <button className="btn btn-dark flex items-center justify-center rounded-full w-10 h-10 p-0">
-                                        <IconGithub />
-                                    </button>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    {/* <div className="panel lg:col-span-2 xl:col-span-3">
-                        <div className="mb-5">
-                            <h5 className="font-semibold text-lg dark:text-white-light">Task</h5>
-                        </div>
-                        <div className="mb-5">
-                            <div className="table-responsive text-[#515365] dark:text-white-light font-semibold">
-                                <table className="whitespace-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>Projects</th>
-                                            <th>Progress</th>
-                                            <th>Task Done</th>
-                                            <th className="text-center">Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="dark:text-white-dark">
-                                        <tr>
-                                            <td>Figma Design</td>
-                                            <td>
-                                                <div className="h-1.5 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex w-full">
-                                                    <div className="bg-danger rounded-full w-[29.56%]"></div>
-                                                </div>
-                                            </td>
-                                            <td className="text-danger">29.56%</td>
-                                            <td className="text-center">2 mins ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vue Migration</td>
-                                            <td>
-                                                <div className="h-1.5 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex w-full">
-                                                    <div className="bg-info rounded-full w-1/2"></div>
-                                                </div>
-                                            </td>
-                                            <td className="text-success">50%</td>
-                                            <td className="text-center">4 hrs ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Flutter App</td>
-                                            <td>
-                                                <div className="h-1.5 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex w-full">
-                                                    <div className="bg-warning rounded-full  w-[39%]"></div>
-                                                </div>
-                                            </td>
-                                            <td className="text-danger">39%</td>
-                                            <td className="text-center">a min ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>API Integration</td>
-                                            <td>
-                                                <div className="h-1.5 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex w-full">
-                                                    <div className="bg-success rounded-full  w-[78.03%]"></div>
-                                                </div>
-                                            </td>
-                                            <td className="text-success">78.03%</td>
-                                            <td className="text-center">2 weeks ago</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Blog Update</td>
-                                            <td>
-                                                <div className="h-1.5 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex w-full">
-                                                    <div className="bg-secondary  rounded-full  w-full"></div>
-                                                </div>
-                                            </td>
-                                            <td className="text-success">100%</td>
-                                            <td className="text-center">18 hrs ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Landing Page</td>
-                                            <td>
-                                                <div className="h-1.5 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex w-full">
-                                                    <div className="bg-danger rounded-full  w-[19.15%]"></div>
-                                                </div>
-                                            </td>
-                                            <td className="text-danger">19.15%</td>
-                                            <td className="text-center">5 days ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shopify Dev</td>
-                                            <td>
-                                                <div className="h-1.5 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex w-full">
-                                                    <div className="bg-primary rounded-full w-[60.55%]"></div>
-                                                </div>
-                                            </td>
-                                            <td className="text-success">60.55%</td>
-                                            <td className="text-center">8 days ago</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> */}
 
                     <div className="panel lg:col-span-2 xl:col-span-3">
                         <div className="mb-5 text-lg font-bold">Recent Transactions</div>
@@ -483,7 +403,7 @@ const Profile = () => {
                                     </tr>
                                     <tr>
                                         <td className="font-semibold">#06</td>
-                                        <td className="whitespace-nowrap">Jan 26, 2022</td>
+                                        <td className="whitespace-nowrap">{userData.BOD}</td>
                                         <td className="whitespace-nowrap">Anna Bell</td>
                                         <td className="text-center">
                                             <span className="badge bg-info/20 text-info rounded-full hover:top-0">In Process</span>

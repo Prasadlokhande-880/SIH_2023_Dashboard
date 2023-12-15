@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { date } from 'yup';
+import { AxiosResponse } from 'axios';
+import axios from 'axios'
+
 
 const YourFormComponent: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -23,18 +26,25 @@ const YourFormComponent: React.FC = () => {
         console.log(formData);
     };
 
-    const functionsub = () => {
-        // Perform actions with formData on form submission
-        // For example, send formData to an API endpoint
-        console.log(formData); // Placeholder: you can send data or perform actions here
+    const sendDataToBackend = async (data: any) => {
+        try {
+            const response: AxiosResponse<any> = await axios.post('https://your-backend-url.com/submitFormData', data);
+            console.log('Data sent to the backend:', response.data);
+        } catch (error: any) {
+            console.error('Error sending data to the backend:', error);
+        }
     };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Prevent default form submission behavior
+        sendDataToBackend(formData);
+    };
+
 
     return (
         <form
-            onSubmit={(e) => {
-                e.preventDefault(); // Prevent default form submission behavior
-                functionsub(); // Call your custom function to handle form submission
-            }}
+            onSubmit={onsubmit=()=>{handleSubmit} // Call your custom function to handle form submission
+            }
             className="space-y-5"
         >
             {/* <div className=" bg-cyan-50 textcolo">

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { AxiosResponse } from 'axios';
+import axios from 'axios'
 
 const YourFormComponent: React.FC = () => {
     const initialState = {
@@ -27,14 +29,25 @@ const YourFormComponent: React.FC = () => {
         console.log(formValues);
     };
 
-    const handleFormSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-        // Handle form submission with formValues object
-        console.log(formValues);
+
+
+    const sendDataToBackend = async (data: any) => {
+        try {
+            const response: AxiosResponse<any> = await axios.post('https://your-backend-url.com/submitFormData', data);
+            console.log('Data sent to the backend:', response.data);
+        } catch (error: any) {
+            console.error('Error sending data to the backend:', error);
+        }
     };
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Prevent default form submission behavior
+        sendDataToBackend(formValues);
+    };
+
+
     return (
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
                     <label htmlFor="causeOfAction">Cause of Action</label>
