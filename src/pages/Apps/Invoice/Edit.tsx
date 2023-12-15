@@ -1,60 +1,152 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const YourFormComponent: React.FC = () => {
+    const initialState = {
+        causeOfAction: '',
+        dateOfCauseOfAction: '',
+        importantInfo: '',
+        prayer: '',
+        valuation: 0,
+        selectedState: '',
+        selectedDistrict: '',
+        selectedTaluka: '',
+        selectedVillage: '',
+        act: '',
+        section: '',
+    };
+
+    const [formValues, setFormValues] = useState(initialState);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { id, value } = e.target;
+        setFormValues({
+            ...formValues,
+            [id]: value,
+        });
+
+        console.log(formValues);
+    };
+
+    const handleFormSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+        // Handle form submission with formValues object
+        console.log(formValues);
+    };
+
     return (
         <form className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label htmlFor="gridEmail">Cause of Action</label>
-                    <input id="gridEmail" type="text" placeholder="Enter Cause of Action" className="form-input" />
+            <div>
+                    <label htmlFor="causeOfAction">Cause of Action</label>
+                    <input
+                        id="causeOfAction"
+                        type="text"
+                        name="causeOfAction"
+                        placeholder="Enter Cause of Action"
+                        className="form-input"
+                        value={formValues.causeOfAction}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div>
-                    <label htmlFor="gridPassword">Date of Cause of Action</label>
-                    <input id="gridPassword" type="date" placeholder="Enter Date of Cause of Action" className="form-input" />
+                    <label htmlFor="dateOfCauseOfAction">Date of Cause of Action</label>
+                    <input
+                        id="dateOfCauseOfAction"
+                        type="date"
+                        name="dateOfCauseOfAction"
+                        placeholder="Enter Date of Cause of Action"
+                        className="form-input"
+                        value={formValues.dateOfCauseOfAction}
+                        onChange={handleInputChange}
+                    />
                 </div>
             </div>
             <div>
-                <label htmlFor="gridAddress1">Important Information</label>
-                <input id="gridAddress1" type="text" placeholder="Enter Important Information / Subject / Reason" defaultValue="" className="form-input" />
+                <label htmlFor="importantInfo">Important Information</label>
+                <input
+                        id="importantInfo"
+                        type="text"
+                        name="dateOfCauseOfAction"
+                        placeholder="Enter Date of Cause of Action"
+                        className="form-input"
+                        value={formValues.importantInfo}
+                        onChange={handleInputChange}
+                    />
+                      </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label htmlFor="prayer">Prayer</label>
+                    <input
+                        id="prayer"
+                        type="text"
+                        name="dateOfCauseOfAction"
+                        placeholder="Enter Date of Cause of Action"
+                        className="form-input"
+                        value={formValues.prayer}
+                        onChange={handleInputChange}
+                    />
+                     </div>
+                <div>
+                    <label htmlFor="valuation">Valuation</label>
+                    <input
+                        id="valuation"
+                        type="text"
+                        name="dateOfCauseOfAction"
+                        placeholder="Enter Date of Cause of Action"
+                        className="form-input"
+                        value={formValues.valuation}
+                        onChange={handleInputChange}
+                    />
+                    </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label htmlFor="gridEmail">Prayer</label>
-                    <input id="gridEmail" type="text" placeholder="Enter Prayer" className="form-input" />
-                </div>
-                <div>
-                    <label htmlFor="gridPassword">Valuation</label>
-                    <input id="gridPassword" type="number" placeholder="Enter Valuation" className="form-input" />
-                </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label htmlFor="gridState">State</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <label htmlFor="selectedState">State</label>
+                    <select
+                    id="selectedState"
+                    className="form-select text-white-dark"
+                    value={formValues.selectedState}
+                    onChange={handleInputChange}
+                    >
                         <option>Choose...</option>
                         <option>State1</option>
                         <option>State2</option>
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="gridState">District</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <label htmlFor="selectedDistrict">District</label>
+                    <select
+                    id="selectedDistrict"
+                    className="form-select text-white-dark"
+                    value={formValues.selectedDistrict}
+                        onChange={handleInputChange}
+                        >
                         <option>Choose...</option>
                         <option>District1</option>
                         <option>District2</option>
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="gridState">Taluka</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <label htmlFor="selectedTaluka">Taluka</label>
+                    <select
+                    id="selectedTaluka"
+                    className="form-select text-white-dark"
+                    value={formValues.selectedTaluka}
+                        onChange={handleInputChange}
+                    >
                         <option>Choose...</option>
                         <option>Taluka1</option>
                         <option>Taluka2</option>
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="gridState">Village</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <label htmlFor="selectedVillage">Village</label>
+                    <select
+                    id="selectedVillage"
+                     className="form-select text-white-dark"
+                     value={formValues.selectedVillage}
+                        onChange={handleInputChange}
+                     >
                         <option>Choose...</option>
                         <option>Village1</option>
                         <option>Village2</option>
@@ -62,30 +154,28 @@ const YourFormComponent: React.FC = () => {
                 </div>
             </div>
             <div>
-                <label htmlFor="gridPassword">Act</label>
-                <input id="gridPassword" type="text" placeholder="Enter Act" className="form-input" />
-            </div>
+                <label htmlFor="act">Act</label>
+                <input
+                        id="act"
+                        type="text"
+                        name="dateOfCauseOfAction"
+                        placeholder="Enter Date of Cause of Action"
+                        className="form-input"
+                        value={formValues.act}
+                        onChange={handleInputChange}
+                    />
+                     </div>
             <div>
-                <label htmlFor="gridPassword">Section</label>
-                <input id="gridPassword" type="text" placeholder="Enter Section" className="form-input" />
-            </div>
-            {/* <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div className="md:col-span-2">
-                    <label htmlFor="gridCity">City</label>
-                    <input id="gridCity" type="text" placeholder="Enter City" className="form-input" />
-                </div>
-                <div>
-                    <label htmlFor="gridState">State</label>
-                    <select id="gridState" className="form-select text-white-dark">
-                        <option>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="gridZip">Zip</label>
-                    <input id="gridZip" type="text" placeholder="Enter Zip" className="form-input" />
-                </div>
-            </div> */}
+                <label htmlFor="section">Section</label>
+                <input
+                        id="section"
+                        type="text"
+                        name="dateOfCauseOfAction"
+                        placeholder="Enter Date of Cause of Action"
+                        className="form-input"
+                        value={formValues.section}
+                        onChange={handleInputChange}
+                    /> </div>
             <button type="submit" className="btn btn-primary !mt-6">
                 Submit
             </button>
