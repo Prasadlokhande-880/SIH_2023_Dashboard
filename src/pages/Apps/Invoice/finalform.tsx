@@ -12,7 +12,7 @@ const FinalForm = () => {
         caseType: '',
         plaintiff: '',
         contactNo: '',
-        petitioner: '',
+        petitioner: 'wdwqdwqdqdwq',
         gender: '',
         relation: '',
         dob: '',
@@ -56,22 +56,6 @@ const FinalForm = () => {
         act: '',
         section: '',
     });
-
-    const axios = require('axios');
-
-const endpointUrl = 'https://your-backend-url.com/formData';
-
-const getFormDataFromBackend = async () => {
-    try {
-        const response = await axios.get(endpointUrl);
-        const formDataFromBackend = response.data;
-                setFormData(formDataFromBackend);
-    } catch (error) {
-        console.error('Error fetching form data:', error);
-    }
-};
-
-getFormDataFromBackend();
 
 
 

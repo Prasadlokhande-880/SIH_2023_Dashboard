@@ -73,7 +73,7 @@ const YourFormComponent: React.FC = () => {
                     onChange={handleChange}
                 />
             </div>
-
+            
             <div>
                 <label>Gender:</label>
                 <div className="flex flex-col">

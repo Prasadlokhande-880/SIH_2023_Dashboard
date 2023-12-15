@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../store/themeConfigSlice';
+import { userInfo } from 'os';
 
 const AccountSetting = () => {
     const dispatch = useDispatch();
@@ -11,14 +12,13 @@ const AccountSetting = () => {
 
     const [tabs, setTabs] = useState<string>('home');
     const [formData, setFormData] = useState({
-        name: 'Jimmy Turner',
-        profession: 'Web Developer',
-        country: 'United States',
-        address: 'New York',
-        location: 'Location',
-        phone: '+1 (530) 555-12121',
-        email: 'Jimmy@gmail.com',
-        web: 'www.example.com'
+        name:"time",
+        email:"time@email.com",
+        BOD:"1/1/2002",
+        ordinaryPlaceOfWorking:"air",
+        district:"Japan",
+        mobile:123456789,
+        state:"Japan"
     });
 
     const toggleTabs = (name: string) => {
@@ -84,12 +84,16 @@ const AccountSetting = () => {
                                         type="text"
                                         placeholder="Name"
                                         className="form-input"
-                                        value={formData.profession}
+                                        value={formData.ordinaryPlaceOfWorking}
                                         onChange={handleInputChange}
                                     /></div>
                                     <div>
                                         <label htmlFor="country">Country</label>
-                                        <select defaultValue="United States" id="country" className="form-select text-white-dark">
+                                        <select
+                                        id="country"
+                                        className="form-select text-white-dark"
+                                        value={formData.district}
+                                        onChange={handleInputChange}>
                                             <option value="All Countries">All Countries</option>
                                             <option value="United States">United States</option>
                                             <option value="India">India</option>
@@ -101,24 +105,40 @@ const AccountSetting = () => {
                                         </select>
                                     </div>
                                     <div>
-                                        <label htmlFor="address">Address</label>
-                                        <input id="address" type="text" placeholder="New York" className="form-input" />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="location">Location</label>
-                                        <input id="location" type="text" placeholder="Location" className="form-input" />
-                                    </div>
+                                    <label htmlFor="country">Country</label>
+                                        <select
+                                        id="country"
+                                        className="form-select text-white-dark"
+                                        value={formData.state}
+                                        onChange={handleInputChange}>
+                                            <option value="All Countries">All Countries</option>
+                                            <option value="United States">United States</option>
+                                            <option value="India">India</option>
+                                            <option value="Japan">Japan</option>
+                                            <option value="China">China</option>
+                                            <option value="Brazil">Brazil</option>
+                                            <option value="Norway">Norway</option>
+                                            <option value="Canada">Canada</option>
+                                        </select>
+
+                                        </div>
                                     <div>
                                         <label htmlFor="phone">Phone</label>
-                                        <input id="phone" type="text" placeholder="+1 (530) 555-12121" className="form-input" />
+                                        <input
+                                        id="phone"
+                                        type="text"
+                                        placeholder="+1 (530) 555-12121"
+                                        className="form-input"
+                                        value={formData.mobile}
+                                        onChange={handleInputChange} />
                                     </div>
                                     <div>
                                         <label htmlFor="email">Email</label>
-                                        <input id="email" type="email" placeholder="Jimmy@gmail.com" className="form-input" />
+                                        <input id="email" type="email" placeholder="Jimmy@gmail.com" className="form-input" value={formData.email} onChange={handleInputChange} />
                                     </div>
                                     <div>
-                                        <label htmlFor="web">Website</label>
-                                        <input id="web" type="text" placeholder="Enter URL" className="form-input" />
+                                        <label htmlFor="web">Birth Of Date</label>
+                                        <input id="web" type="date" placeholder="15/02/2003" className="form-input" value={formData.BOD} onChange={handleInputChange} />
                                     </div>
                                     <div className="sm:col-span-2 mt-3">
                                         <button type="button" className="btn btn-primary">

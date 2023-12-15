@@ -220,9 +220,10 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
 
+                          </li>
 
+{/*
                             <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('user_interface')}</span>
@@ -286,9 +287,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'element' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('element')}>
                                     <div className="flex items-center">
                                         <IconMenuElements className="group-hover:!text-primary shrink-0" />
@@ -358,9 +359,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <NavLink to="/charts" className="group">
                                     <div className="flex items-center">
                                         <IconMenuCharts className="group-hover:!text-primary shrink-0" />
@@ -459,9 +460,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'forms' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('forms')}>
                                     <div className="flex items-center">
                                         <IconMenuForms className="group-hover:!text-primary shrink-0" />
@@ -522,9 +523,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+                            {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('user_and_pages')}</span>
                             </h2>
@@ -601,8 +602,8 @@ const Sidebar = () => {
                                                     </li>
                                                 </ul>
                                             </AnimateHeight>
-                                        </li>
-
+                                        </li> */}
+{/*
                                         <li>
                                             <NavLink to="/pages/maintenence" target="_blank">
                                                 {t('maintenence')}
@@ -610,8 +611,8 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
-
+                            </li> */}
+{/*
                             <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'auth' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('auth')}>
                                     <div className="flex items-center">
@@ -668,9 +669,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+                            {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('supports')}</span>
                             </h2>
@@ -682,7 +683,7 @@ const Sidebar = () => {
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('documentation')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
                         </ul>
                     </PerfectScrollbar>
                 </div>

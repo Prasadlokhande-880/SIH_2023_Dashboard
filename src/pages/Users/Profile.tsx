@@ -275,7 +275,6 @@ const Profile = () => {
         ordinaryPlaceOfWorking:"",
         district:"",
         mobile:"",
-        gender:"",
         state:""
     })
 

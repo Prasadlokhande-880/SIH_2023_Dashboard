@@ -249,7 +249,7 @@ const Header = () => {
                             )}
                         </div>
                         <div className="dropdown shrink-0">
-                            <Dropdown
+                         {/* <Dropdown
                                 offset={[0, 8]}
                                 placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                 btnClassName="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
@@ -275,8 +275,8 @@ const Header = () => {
                                         );
                                     })}
                                 </ul>
-                            </Dropdown>
-                        </div>
+                            </Dropdown> */}
+                        {/* </div>
                         <div className="dropdown shrink-0">
                             <Dropdown
                                 offset={[0, 8]}
@@ -340,8 +340,8 @@ const Header = () => {
                                 </ul>
                             </Dropdown>
                         </div>
-                        <div className="dropdown shrink-0">
-                            <Dropdown
+                        <div className="dropdown shrink-0"> */}
+                            {/* <Dropdown
                                 offset={[0, 8]}
                                 placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                                 btnClassName="relative block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
@@ -412,7 +412,7 @@ const Header = () => {
                                         </li>
                                     )}
                                 </ul>
-                            </Dropdown>
+                            </Dropdown> */}
                         </div>
                         <div className="dropdown shrink-0 flex">
                             <Dropdown

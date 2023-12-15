@@ -15,6 +15,7 @@ import IconTwitter from '../../components/Icon/IconTwitter';
 import IconX from '../../components/Icon/IconX';
 import IconMenuScrumboard from '../../components/Icon/IconNotes';
 
+
 const Contacts = () => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -40,6 +41,7 @@ const Contacts = () => {
     };
 
     const [search, setSearch] = useState<any>('');
+
     const [contactList] = useState<any>([
         {
             id: 1,
