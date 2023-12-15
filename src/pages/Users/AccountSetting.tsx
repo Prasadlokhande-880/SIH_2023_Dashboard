@@ -79,8 +79,14 @@ const AccountSetting = () => {
                                     </div>
                                     <div>
                                         <label htmlFor="profession">Profession</label>
-                                        <input id="profession" type="text" placeholder="Web Developer" className="form-input" />
-                                    </div>
+                                        <input
+                                        id="name"
+                                        type="text"
+                                        placeholder="Name"
+                                        className="form-input"
+                                        value={formData.profession}
+                                        onChange={handleInputChange}
+                                    /></div>
                                     <div>
                                         <label htmlFor="country">Country</label>
                                         <select defaultValue="United States" id="country" className="form-select text-white-dark">
