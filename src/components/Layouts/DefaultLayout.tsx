@@ -8,6 +8,7 @@ import Header from './Header';
 import Setting from './Setting';
 import Sidebar from './Sidebar';
 import Sidebar2 from './Sidebar2';
+import Sidebar3 from './Sidebar3';
 import Portals from '../../components/Portals';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
@@ -51,7 +52,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
 
     useEffect(() => {
       const fetchData = async () => {
-          const userData ="second";
+          const userData ="third";
           changeUser(userData);
       };
       fetchData();
@@ -93,9 +94,9 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
                 <div className={`${themeConfig.navbar} main-container text-black dark:text-white-dark min-h-screen`}>
                     {/* BEGIN SIDEBAR */}
                     {user ? (
-                        user === 'dwcdws' ? <Sidebar /> :
+                        user === 'third' ? <Sidebar /> :
                         user === 'second' ? <Sidebar2/> :
-                        user === 'third' ? <Sidebar/> :
+                        user === 'thirdcd' ? <Sidebar3/> :
                         null
                          ) : null}
                     {/* END SIDEBAR */}

@@ -1,32 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { date } from 'yup';
 
 const YourFormComponent: React.FC = () => {
+    const [formData, setFormData] = useState({
+        district: '',
+        establishment: '',
+        natureOfCase: '',
+        reliefSought: '',
+        caseType: '',
+        plaintiff: '',
+        contactNo: '',
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { id, value } = e.target;
+        setFormData({
+            ...formData,
+            [id]: value,
+        });
+
+        console.log(formData);
+    };
+
+    const functionsub = () => {
+        // Perform actions with formData on form submission
+        // For example, send formData to an API endpoint
+        console.log(formData); // Placeholder: you can send data or perform actions here
+    };
+
     return (
-        <form className="space-y-5">
+        <form
+            onSubmit={(e) => {
+                e.preventDefault(); // Prevent default form submission behavior
+                functionsub(); // Call your custom function to handle form submission
+            }}
+            className="space-y-5"
+        >
             {/* <div className=" bg-cyan-50 textcolo">
                 <h1>District/Establishment</h1>
             </div> */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label htmlFor="gridState">District</label>
-                    <select id="gridState" className="form-select text-white-dark">
-                        <option>Choose...</option>
-                        <option>District1</option>
-                        <option>District2</option>
-                    </select>
+                <label htmlFor="district">District</label>
+                <select
+                    id="district"
+                    className="form-select text-white-dark"
+                    value={formData.district}
+                    onChange={handleInputChange}
+                >
+                    <option>Choose...</option>
+                    <option>District1</option>
+                    <option>District2</option>
+                </select>
                 </div>
                 <div>
-                    <label htmlFor="gridState">Establishment</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <label htmlFor="establishment">Establishment</label>
+                    <select
+                    id="establishment"
+                    className="form-select text-white-dark"
+                    value={formData.establishment}
+                    onChange={handleInputChange}
+                    >
                         <option>Choose...</option>
                         <option>Establishment1</option>
                         <option>Establishment2</option>
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="gridState">Nature of Case</label>
-                    <select id="gridState" className="form-select text-white-dark">
+                    <label htmlFor="natureOfCase">Nature of Case</label>
+                    <select id="natureOfCase"
+                    className="form-select text-white-dark"
+                    value={formData.natureOfCase}
+                    onChange={handleInputChange}
+                    >
                         <option>Choose...</option>
                         <option>Nature1</option>
                         <option>Nature2</option>
@@ -34,20 +81,41 @@ const YourFormComponent: React.FC = () => {
                 </div>
             </div>
             <div>
-                <label htmlFor="gridEmail">Relief Sought</label>
-                <input id="gridEmail" type="text" placeholder="Relief Sought" className="form-input" />
+                <label htmlFor="reliefSought">Relief Sought</label>
+                <input id="reliefSought"
+                type="text"
+                placeholder="Relief Sought"
+                className="form-input"
+                value={formData.reliefSought}
+                onChange={handleInputChange}
+                 />
             </div>
             <div>
-                <label htmlFor="gridPassword">Case Type</label>
-                <input id="gridPassword" type="text" placeholder="Case Type" className="form-input" />
+                <label htmlFor="caseType">Case Type</label>
+                <input id="caseType"
+                type="text"
+                placeholder="Case Type"
+                className="form-input"
+                value={formData.caseType}
+                onChange={handleInputChange} />
             </div>
             <div>
-                <label htmlFor="gridEmail">Plaintiff</label>
-                <input id="gridEmail" type="text" placeholder="Plaintiff" className="form-input" />
+                <label htmlFor="plaintiff">Plaintiff</label>
+                <input id="plaintiff"
+                type="text"
+                placeholder="Plaintiff"
+                className="form-input"
+                value={formData.plaintiff}
+                onChange={handleInputChange} />
             </div>
             <div>
-                <label htmlFor="gridPassword">Contact No.</label>
-                <input id="gridPassword" type="text" placeholder="Contact No." className="form-input" />
+                <label htmlFor="contactNo">Contact No.</label>
+                <input id="contactNo"
+                type="text"
+                placeholder="Contact No."
+                className="form-input"
+                value={formData.contactNo}
+                onChange={handleInputChange} />
             </div>
             {/* <div>
                 <label htmlFor="gridAddress1">Address</label>
