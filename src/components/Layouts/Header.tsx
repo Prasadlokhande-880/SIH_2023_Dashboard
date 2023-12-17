@@ -33,7 +33,6 @@ import IconMenuForms from '../Icon/Menu/IconMenuForms';
 import IconMenuPages from '../Icon/Menu/IconMenuPages';
 import IconMenuMore from '../Icon/Menu/IconMenuMore';
 
-
 const Header = () => {
     const location = useLocation();
     useEffect(() => {
